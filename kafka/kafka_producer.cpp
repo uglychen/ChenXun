@@ -1,3 +1,12 @@
+/*
+	author:  chenxun
+	time: 2016.9
+	complie:
+	ex: g++ kafka_producer.cpp -o testkafka -lcurl  librdkafka.a -lpthread -lrt	
+*/
+
+
+
 #include <ctype.h>
 #include <signal.h>
 #include <string.h>
