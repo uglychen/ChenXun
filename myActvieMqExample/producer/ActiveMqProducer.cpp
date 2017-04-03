@@ -69,13 +69,14 @@ void ActiveMqProducer::sendMessage(std::string& destTopic, std::string& message)
         producerMap[destTopic] = producer;
     }
 
+    std::string send_message = destTopic + ":" + message;
+
     std::string threadIdStr = Long::toString( Thread::currentThread()->getId() );
-    TextMessage* text = session->createTextMessage( message );
+    TextMessage* text = session->createTextMessage( send_message );
     std::cout << "Send message from thread: " << threadIdStr << std::endl;
-    std::cout << "send a message: " << message << std::endl; // need modify (log file)
+    std::cout << "send a message: " << send_message << std::endl; // need modify (log file)
     producerMap[destTopic]->send( text );
     delete text;
-
 }
 
 void ActiveMqProducer::cleanup()
