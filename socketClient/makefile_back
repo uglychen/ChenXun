@@ -13,7 +13,8 @@ PAHO_CPP_LIB=/root/paho_mqtt/paho.mqtt.cpp
 includes =  -I ./ \
             -I ../ \
             -I ./include \
-			-I ./include/mqtt\
+			-I$(PAHO_C_LIB)/src\
+			-I$(PAHO_CPP_LIB)/src\
 
 
 #放置cpp的路径加在这儿
@@ -24,11 +25,13 @@ user_dir =  ./ \
 lib_path =  -L ./   \
             -L ../ \
             -L ./lib\
+			-L$(PAHO_C_LIB)/build/output\
+			-L$(PAHO_CPP_LIB)/lib\
 
 #link lib.a file
-lib =    -lpthread \
-        -lmqttpp\
-        -lpaho-mqtt3a\
+lib =	-lpthread \
+		-lmqttpp\
+		-lpaho-mqtt3a\
 
 
 INCLUDE := $(includes)
@@ -43,6 +46,6 @@ $(target) : $(objects)
 %.o : %.cpp
 	$(XX) $(CFLAGS) $(includes) -c  $^  -g -o  $@  -DLinux
 
-clean :
+clean : 
 	rm -rf $(target)
 	rm -rf $(objects)

@@ -156,7 +156,7 @@ bool NetClient::verifyLogin()
     memcpy(login_cmd, recv_login + 1, 4);
     std::cout << "---login_cmd:---" << login_cmd << std::endl;
     
-    if( strcmp(login_cmd,"0200") == 0 )
+    if( strcmp(login_cmd, "0200") == 0 )
     {
         std::cout << "NetClient::verifyLogin success!" << std::endl;
         return true;
