@@ -34,10 +34,10 @@ public:
     void initClient(std::string server_ip, int server_port);
     int netSocket();
     int netConnect();
-    ssize_t netReadn(int fd, char *buf, size_t n);
+    ssize_t netReadn(int fd, char *buf, size_t n );
     ssize_t netWriten(int fd, const void *buf, size_t n);
     bool verifyLogin();
-    void recvData(std::string& data, int n);
+    void recvData(std::string& data);
 
 private:
     int fd;

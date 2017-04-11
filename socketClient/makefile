@@ -13,7 +13,9 @@ PAHO_CPP_LIB=/root/paho_mqtt/paho.mqtt.cpp
 includes =  -I ./ \
             -I ../ \
             -I ./include \
-			-I ./include/mqtt\
+            -I ./include/mqtt\
+            -I /usr/local/ActiveMQ-CPP/include/activemq-cpp-3.9.4\
+            -I /usr/local/apr/include/apr-1/\
 
 
 #放置cpp的路径加在这儿
@@ -24,11 +26,14 @@ user_dir =  ./ \
 lib_path =  -L ./   \
             -L ../ \
             -L ./lib\
+            -L /usr/local/ActiveMQ-CPP/lib/\
+            
 
 #link lib.a file
-lib =    -lpthread \
+lib =   -lpthread \
         -lmqttpp\
         -lpaho-mqtt3a\
+        -lactivemq-cpp\
 
 
 INCLUDE := $(includes)

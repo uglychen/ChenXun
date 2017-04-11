@@ -1,3 +1,11 @@
+/*
+ *  netClient.cpp
+ *
+ *  Created on: 2017-4-6
+ *  Author: chenxun 275076730@qq.com
+ *
+ */
+
 
 #include <iostream>
 #include "netClient.h"
@@ -166,22 +174,38 @@ bool NetClient::verifyLogin()
     } 
 }
 
-void  NetClient::recvData(std::string& data, int n)
+void  NetClient::recvData( std::string& data )
 {
     char head_buffer[12] = { 0 };
     netReadn(fd, head_buffer, 11);
-    std::cout << "The reev head  data:" << head_buffer << std::endl;    
+    std::cout << "The recv head  data:" << head_buffer << std::endl;    
     
-    char len[5]={ 0 };
-    memcpy(len, head_buffer+5, 4);
-    int message_len = atoi(len);
+    char commd[5] = { 0 };
+    char m_len[5]={ 0 };
+    memcpy(commd,head_buffer+1, 4);
+    memcpy(m_len, head_buffer+5, 4);
+    int message_len = atoi(m_len);
     std::cout << "the message length: "  << message_len << std::endl;
    
-    char message_body[2480] =  { 0 }; 
-    netReadn(fd, message_body,  message_len);
-    //std::cout << "message body: " << message_body << std::endl;    
-    data = message_body;
-    std::cout << "message body: " << data  << std::endl;    
+    if( strcmp(commd, "0201") == 0)
+    {
+        char message_body[2480] =  { 0 }; 
+        netReadn(fd, message_body,  message_len+1);
+        //std::cout << "message body: " << message_body << std::endl;    
+        data = message_body;
+        std::cout << "message body: " << data  << std::endl; 
+    }
+    else if( strcmp(commd, "0203") == 0)//心跳包超时处理
+    {
+        char a[1] = { 0 };
+        //无行情的时候头部是12字节的，先接受的了11，这儿追加消费1字节的消息
+        netReadn(fd, head_buffer, 1);
+        std::cout << "heartbeat" << std::endl;
+    }
+    else
+    {
+        std::cout << "recv data error" << std::endl;
+    }   
 
     return;
 }
