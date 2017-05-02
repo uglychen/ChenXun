@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+     <log_config_file_path>./log.conf</log_config_file_path>
+     <server_prot>10088</server_prot>
+     <server_ip>183.62.250.18</server_ip>
+     <brokerURI>failover:(tcp://101.37.33.121:61616)</brokerURI>
+     <useTopic>1</useTopic>
+     <clientAck>0</clientAck>
+     <topic>QUOTE.ORG</topic>
+     <db_url>tcp://116.62.176.131:3306/calf_middle_gg</db_url>
+     <user>user1</user>
+     <passwd>123456</passwd>
+     <connect_num>50</connect_num>
+</config>

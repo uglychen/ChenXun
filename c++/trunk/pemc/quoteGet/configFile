@@ -1,0 +1,18 @@
+#zlog日志模块配置路劲
+log_config_file_path = ./log.conf
+
+#socket服务端的ip地址以及端口
+server_prot = 10088
+server_ip = 183.62.250.18
+
+#activeMq配置
+brokerURI = failover:(tcp://101.37.33.121:61616)
+useTopic = true
+clientAck = false
+topic = QUOTE.ORG
+
+#DB模块配置
+db_url= tcp://116.62.176.131:3306/calf_middle_gg
+user = user1
+passwd = 123456
+connect_num = 50

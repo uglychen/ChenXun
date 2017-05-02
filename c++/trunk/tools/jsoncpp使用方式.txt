@@ -1,0 +1,51 @@
+1,下载scons:  wget https://jaist.dl.sourceforge.net/project/scons/scons/2.1.0/scons-2.1.0.tar.gz
+	解压: tar zxvf scons-2.1.0.tar.gz
+	设定环境变量
+	# export MYSCONS=解压的路径(例如:/home/mycentos/scons-2.1.0)
+	# export SCONS_LIB_DIR=$MYSCONS/engine
+
+2,下载jsoncpp:  wget https://jaist.dl.sourceforge.net/project/jsoncpp/jsoncpp/0.5.0/jsoncpp-src-0.5.0.tar.gz
+	解压: tar zxvf jsoncpp-src-0.5.0.tar.gz
+	# cd jsoncpp-src-0.5.0
+	# python $MYSCONS/script/scons platform=linux-gcc
+	
+3,生成静态和动态库文件
+	在jsoncpp-src-0.5.0/libs/linux-gcc-4.1.2目录下有两个库,将这两个库放到/usr/lib下
+	libjson_linux-gcc-4.4.4_libmt.a
+	libjson_linux-gcc-4.4.4_libmt.so
+
+	
+下边我们开始做第一个程序
+在项目目录下新建  jsontest.cpp
+
+#include <json/json.h>
+#include <string>
+#include <iostream>
+//#include "json/json.h"
+using namespace std;
+int main()
+{
+ string test ="{\"id\":0,\"name\":\"linux\"}";
+ Json::Reader reader;
+ Json::Value value;
+ if(reader.parse(test,value))
+ {
+  if(!value["id"].isNull())
+  {
+   cout<<value["id"].asInt()<<endl;
+   cout<<value["name"].asString()<<endl;
+  }
+ }
+ return 0;
+}
+
+
+编译命令为：g++ jsontest.cpp -I/home/mycentos/jsoncpp-src-0.5.0/include  -L/usr/lib   -ljson_linux-gcc-4.8.5_libmt
+编译成功
+
+如果 ./a.out 执行进程时错误，说是找不到.so文件，解决办法有：(建议采用第二种方法)
+1.将jsoncpp编译后的.so文件拷贝到当前项目目录中
+2.编辑/etc/ld.so.conf文件，将.so文件所在的路径加进去，同时加入/usr/local/lib
+然后用命令/sbin/ldconfig -v对.so的配置进行更新,该命令需要有root权限
+
+以上完成后就可以正常运行

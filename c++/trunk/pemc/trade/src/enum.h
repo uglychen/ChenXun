@@ -1,0 +1,69 @@
+#ifndef _ENUM_H_39DDBB76_9675_433A_9527_2378A1D02DD9_
+#define _ENUM_H_39DDBB76_9675_433A_9527_2378A1D02DD9_
+
+
+
+
+enum login_status
+{
+	login_status_in, //登录状态
+	login_status_out,//非登录状态
+};
+
+enum request_type
+{
+	request_type_get_response = 10000,
+
+};
+
+
+
+//交易接口类型
+enum {
+	LOGIN = 0,		//登录
+	LOGOUT = 98,	//登出
+	GET_ACCNTINFO = 2,	//获取用户信息
+	GET_MARKETSTATUS = 3,	//获取市场状态
+
+	GET_OPENMARKETCONF = 5,	//根据商品ID，获取其市价建仓的配置信息
+	GET_CLOSEMARKETCONF = 6, //根据商品ID，获取其市价平仓的配置信息
+	GET_OPENLIMITCONF = 7,	//根据商品ID，获取其限价建仓的配置信息
+	GET_CLOSELIMITCONF = 8,	//根据商品ID，获取其限价平仓的配置信息
+	GET_OPENDELIVERYCONF = 50,	//根据商品ID，获取交割的配置信息
+
+	REQ_QUOTE = 9,			//请求商品行情
+	REQ_HOLDPOSITION = 10,	//请求持仓信息
+	REQ_LIMITORDERS = 11,	//请求限价单信息
+	REQ_CLOSEORDERS = 12,	//请求平仓单信息
+	REQ_HOLDPOSITIONTOTAL = 13, //请求所有持仓单信息
+
+	QUE_QUOTE_ID = 21,
+	QUE_HOLDPOSITION_ID = 22,
+	QUE_LIMITORDERS_ID = 23,
+	QUE_CLOSEORDERS_ID = 24,
+	QUE_HOLDPOSITIONTOTAL_ID = 25,
+	QUE_HOLDPOSITIONTOTAL_DIREC = 26,
+
+	ON_OPENMARKET = 14,	//市价建仓
+	ON_CLOSEMARKET = 31,	//市价平仓
+	ON_CLOSEMARETMANY = 16, //批量平仓
+	ON_OPENLIMIT = 19,	//限价建仓
+	ON_CLOSELIMIT = 35, //限价平仓
+	ON_LIMITREVOKE = 36,
+	ON_MONEYQUERY = 17,	//
+	ON_MONEYINOUT = 18, //出入金
+	ON_CUSTMTRADEREPORTHOLDPOSITOIN = 37,
+	ON_CUSTMTRADEREPORTCLOSEPOSITOIN = 38,
+	ON_CUSTMTRADEREPORTLIMITORDER = 39,
+	ON_LOGINPWDUPD = 40,	//修改密码
+	ON_FUNDPWDUPD = 41,		//修改密码
+	ON_FUNDFLOWQUERY = 42,
+	ON_OPENDELIVERYORDER = 51,
+	ON_SIGNRESULTNOTIFYQUERY = 46,
+	ON_PAYFORWARD = 47,
+	ON_CUSTOMERALLOWLOGIN = 48,
+
+	EXIT = 99,	//退出
+};
+
+#endif

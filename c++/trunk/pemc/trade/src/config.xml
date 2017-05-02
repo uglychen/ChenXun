@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<proconfig>  
+    <!--base config.-->  
+    <app_log_path>./applog</app_log_path>  
+    <server_ip>183.62.250.19</server_ip>  
+    <server_port>9745</server_port>  
+    <interface_ip>183.62.250.19</interface_ip>  
+    <interface_port>15880</interface_port>  
+    <account>PMEC_180</account>  
+    <passwd>PMEC180</passwd>  
+    <out_of_time_interval>3600</out_of_time_interval>  
+    <!--more config message.-->  
+</proconfig>  

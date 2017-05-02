@@ -1,0 +1,2 @@
+export PATH=/usr/local/gSOAP/bin:$PATH
+soapcpp2 -CL ../src/quote.h

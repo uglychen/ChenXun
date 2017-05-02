@@ -1,0 +1,10 @@
+{
+  "app_log_path": "./applog",
+  "server_ip": "183.62.250.19",
+  "server_port": 9745,
+  "interface_ip": "183.62.250.19",
+  "interface_port": 15880,
+  "account": "PMEC_180",
+  "passwd": "PMEC180",
+  "out_of_time_interval": 3600
+}
