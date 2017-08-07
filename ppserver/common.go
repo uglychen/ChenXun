@@ -37,6 +37,7 @@ func InitHandlerMap(m map[string]HandlersFunc) {
     HandlerMap["/HandleWithdrawal"] = HandleWithdrawal   //处理用户提现
     HandlerMap["/transRecord"] = transRecord             //用户金币兑换零钱记录
     HandlerMap["/icon"] = icon                           //icon图标
+    HandlerMap["/listWithdraw"] = listWithdraw           //列出所有用户的提现记录
 
     log.Println("Listen HandlerMap's length:", len(HandlerMap))
 }

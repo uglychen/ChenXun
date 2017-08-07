@@ -2,6 +2,7 @@ package main
 
 import (
     //"database/sql"
+    "encoding/base64"
     "encoding/json"
     "fmt"
     _ "github.com/go-sql-driver/mysql"
@@ -31,6 +32,8 @@ type retFeedback struct {
 type effectiveJson struct {
     UserId     int
     CommitTime string
+    Valid      int
+    Op         int
 }
 
 func feedback(w http.ResponseWriter, req *http.Request) {
@@ -90,12 +93,14 @@ func listFeedback(w http.ResponseWriter, req *http.Request) {
     var commitTime string
     var app_version string
     var os_version string
+    var valid int
+    var op int
 
     tody_date := time.Now()
     date := tody_date.AddDate(0, 0, -6).Format("2006-01-02 15:04:05")
     str_sql := `select userId, android_id, pkg_name, contact_way, content,
-                        channel, commitTime, app_version, os_version 
-                        from feedback where commitTime >= ? and valid = '0'`
+                        channel, commitTime, app_version, os_version, valid, op
+                        from feedback where commitTime >= ?`
 
     rows, err := tx.Query(str_sql, date)
     if err != nil {
@@ -107,19 +112,21 @@ func listFeedback(w http.ResponseWriter, req *http.Request) {
     for rows.Next() {
         dataMap := make(map[string]interface{})
         err := rows.Scan(&userId, &android_id, &pkg_name, &contact_way, &content,
-            &channel, &commitTime, &app_version, &os_version)
+            &channel, &commitTime, &app_version, &os_version, &valid, &op)
         if err != nil {
             log.Println(err)
         }
         dataMap["userId"] = userId
         dataMap["android_id"] = android_id
         dataMap["pkg_name"] = pkg_name
-        dataMap["contact_way"] = contact_way
-        dataMap["content"] = content
+        dataMap["contact_way"] = base64.StdEncoding.EncodeToString([]byte(contact_way))
+        dataMap["content"] = base64.StdEncoding.EncodeToString([]byte(content))
         dataMap["channel"] = channel
         dataMap["commitTime"] = commitTime
         dataMap["app_version"] = app_version
         dataMap["os_version"] = os_version
+        dataMap["valid"] = valid
+        dataMap["op"] = op
 
         log.Println("listFeedback-->dataMap:", dataMap)
         slice = append(slice, dataMap)
@@ -143,11 +150,13 @@ func effectiveFeedback(w http.ResponseWriter, req *http.Request) {
 
     userId := strconv.Itoa(data.UserId)
     commitTime := data.CommitTime
+    valid := data.Valid
+    op := data.Op
     taskId := 9
 
     flag := checkUserId(userId, Db)
     if !flag {
-        str := `{"Code":400,"Msg:":"userId not in db"}`
+        str := `{"code":400,"message:":"userId not in db"}`
         fmt.Fprint(w, str, "\n")
         log.Println("用户未注册userId", data.UserId)
         return
@@ -158,7 +167,7 @@ func effectiveFeedback(w http.ResponseWriter, req *http.Request) {
     eventMap := getEventMap(userId, taskId, date, Db)
 
     //检查有效的返回是否已近有效了
-    var valid int
+    var t_valid int
     str_sql := `select valid from feedback where userId=? and commitTime=?`
     rows, err1 := Db.Query(str_sql, userId, commitTime)
     if err1 != nil {
@@ -167,8 +176,8 @@ func effectiveFeedback(w http.ResponseWriter, req *http.Request) {
     defer rows.Close()
 
     if rows.Next() {
-        rows.Scan(&valid)
-        log.Println("effectiveFeedback valid:", valid)
+        rows.Scan(&t_valid)
+        log.Println("effectiveFeedback valid:", t_valid)
     } else {
         retValue.Code = 500
         retValue.Message = "db no record"
@@ -178,7 +187,7 @@ func effectiveFeedback(w http.ResponseWriter, req *http.Request) {
         return
     }
 
-    if valid > 0 {
+    if t_valid > 0 {
         retValue.Code = 600
         retValue.Message = "have already done"
         bytes, _ := json.Marshal(retValue)
@@ -188,10 +197,19 @@ func effectiveFeedback(w http.ResponseWriter, req *http.Request) {
     }
 
     tx, _ := Db.Begin()
-    _, err2 := tx.Exec("update feedback set valid = 1 where userId=? and commitTime=?", userId, commitTime)
+    defer tx.Commit()
+    _, err2 := tx.Exec("update feedback set valid = ?, op = ? where userId=? and commitTime=?",
+        valid, 1, userId, commitTime)
     if err2 != nil {
+        retValue.Code = 700
+        retValue.Message = "failed"
+        bytes, _ := json.Marshal(retValue)
+        fmt.Fprint(w, string(bytes), "\n")
         log.Println("error info:", err2)
-    } else {
+        return
+    }
+
+    if valid == 1 && op != 1 {
         tx.Exec("update userInfo set gold=gold+? where userId=?", eventMap["addGoldCoin"], userId)
         var data2 goldData
         data2.userId = userId
@@ -207,6 +225,4 @@ func effectiveFeedback(w http.ResponseWriter, req *http.Request) {
         bytes, _ := json.Marshal(retValue)
         fmt.Fprint(w, string(bytes), "\n")
     }
-
-    tx.Commit()
 }

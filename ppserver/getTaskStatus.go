@@ -21,8 +21,6 @@ func getTaskStatus(w http.ResponseWriter, req *http.Request) {
     flag := checkUserId(userId, Db)
     if flag {
         today_date := time.Now().Format("2006-01-02 00:00:00")
-        //today_date := "2017-07-25 00:00:00"
-
         str_sql := `SELECT eventTable.taskId, taskInfoTable.taskName, eventTable.taskStatus, 
             date, eventId, eventTable.addGoldCoin, eventTable.addCash 
             FROM eventTable LEFT JOIN taskInfoTable ON  taskInfoTable.taskId = eventTable.taskId 
@@ -32,6 +30,7 @@ func getTaskStatus(w http.ResponseWriter, req *http.Request) {
         if err != nil {
             log.Println("getTaskStatus error info:", err)
         }
+        defer rows.Close()
 
         var taskId int
         var taskName string
@@ -50,7 +49,7 @@ func getTaskStatus(w http.ResponseWriter, req *http.Request) {
                 log.Println("error info:", err)
             }
 
-            t, _ := time.Parse("2006-01-02 00:00:00", tmp_date)
+            t, _ := time.ParseInLocation("2006-01-02 00:00:00", tmp_date, time.Local)
             dataMap["userId"], _ = strconv.Atoi(userId)
             dataMap["taskId"] = taskId
             dataMap["taskNmae"] = taskName
@@ -70,14 +69,19 @@ func getTaskStatus(w http.ResponseWriter, req *http.Request) {
                         FROM eventTable LEFT JOIN taskInfoTable ON 
                         taskInfoTable.taskId = eventTable.taskId where userId=? and eventTable.taskId =?`
 
-        row1, err := Db.Query(str_sql1, userId, 1)
-        if row1.Next() {
+        rows1, err1 := Db.Query(str_sql1, userId, 1)
+        if err1 != nil {
+            log.Println("error info:", err1)
+        }
+        defer rows1.Close()
+
+        if rows1.Next() {
             dataMap := make(map[string]interface{})
-            err := row1.Scan(&taskId, &taskName, &taskStatus, &tmp_date, &eventId, &addGoldCoin, &addCash)
+            err := rows1.Scan(&taskId, &taskName, &taskStatus, &tmp_date, &eventId, &addGoldCoin, &addCash)
             if err != nil {
                 log.Println("error info:", err)
             }
-            t, _ := time.Parse("2006-01-02 00:00:00", tmp_date)
+            t, _ := time.ParseInLocation("2006-01-02 00:00:00", tmp_date, time.Local)
             dataMap["userId"], _ = strconv.Atoi(userId)
             dataMap["taskId"] = 1
             dataMap["taskNmae"] = taskName
@@ -96,19 +100,24 @@ func getTaskStatus(w http.ResponseWriter, req *http.Request) {
                         FROM eventTable LEFT JOIN taskInfoTable ON 
                         taskInfoTable.taskId = eventTable.taskId where userId=? and eventTable.taskId =?`
 
-        row2, err := Db.Query(str_sql2, userId, 2)
-        if row2.Next() {
+        rows2, err2 := Db.Query(str_sql2, userId, 2)
+        if err2 != nil {
+            log.Println("error info:", err2)
+        }
+        defer rows2.Close()
+
+        if rows2.Next() {
             dataMap := make(map[string]interface{})
-            err := row2.Scan(&taskId, &taskName, &taskStatus, &tmp_date, &eventId, &addGoldCoin, &addCash)
+            err := rows2.Scan(&taskId, &taskName, &taskStatus, &tmp_date, &eventId, &addGoldCoin, &addCash)
             if err != nil {
                 log.Println("error info:", err)
             }
-            t, _ := time.Parse("2006-01-02 00:00:00", tmp_date)
+
+            t, _ := time.ParseInLocation("2006-01-02 00:00:00", tmp_date, time.Local)
             dataMap["userId"], _ = strconv.Atoi(userId)
             dataMap["taskId"] = 2
             dataMap["taskNmae"] = taskName
             dataMap["date"] = t.Unix()
-            //dataMap["taskStatus"] = taskStatus
             if taskStatus > 0 {
                 dataMap["taskStatus"] = 1
             } else {

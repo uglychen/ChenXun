@@ -31,6 +31,7 @@ func icon(w http.ResponseWriter, req *http.Request) {
     if err != nil {
         log.Println("err:", err)
     }
+    defer rows.Close()
 
     var version string
     var image_url string

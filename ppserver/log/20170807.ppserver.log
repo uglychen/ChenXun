@@ -1,0 +1,18 @@
+2017/08/07 17:54:06 main.go:58: ===start the ppserver===.
+2017/08/07 17:54:06 common.go:42: Listen HandlerMap's length: 16
+2017/08/07 17:54:06 common.go:49: router: /loginAndOut   handle: 0x1269560
+2017/08/07 17:54:06 common.go:49: router: /feedback   handle: 0x1259da0
+2017/08/07 17:54:06 common.go:49: router: /updateUserData   handle: 0x1254120
+2017/08/07 17:54:06 common.go:49: router: /readAward   handle: 0x12561f0
+2017/08/07 17:54:06 common.go:49: router: /incomeList   handle: 0x12604c0
+2017/08/07 17:54:06 common.go:49: router: /withdrawal   handle: 0x126b5f0
+2017/08/07 17:54:06 common.go:49: router: /transRecord   handle: 0x1262950
+2017/08/07 17:54:06 common.go:49: router: /listWithdraw   handle: 0x126cd40
+2017/08/07 17:54:06 common.go:49: router: /shareApp   handle: 0x1255590
+2017/08/07 17:54:06 common.go:49: router: /getTaskStatus   handle: 0x125d730
+2017/08/07 17:54:06 common.go:49: router: /withdrawalRcord   handle: 0x126c9b0
+2017/08/07 17:54:06 common.go:49: router: /effectiveFeedback   handle: 0x125bee0
+2017/08/07 17:54:06 common.go:49: router: /userSignIn   handle: 0x12696d0
+2017/08/07 17:54:06 common.go:49: router: /listFeedback   handle: 0x125a9f0
+2017/08/07 17:54:06 common.go:49: router: /HandleWithdrawal   handle: 0x126dba0
+2017/08/07 17:54:06 common.go:49: router: /icon   handle: 0x1263a00

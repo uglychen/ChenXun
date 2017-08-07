@@ -86,13 +86,16 @@ func UserRegister(w http.ResponseWriter, req *http.Request) {
             sql := `INSERT INTO userInfo(wechatId, nickName, headUrl, gender, age, gold, cash)
                    VALUES (?, ?, ?, ?, ?, ?, ?)`
 
-            Db.Exec(sql, dataMap["openId"].(string), dataMap["nickName"].(string), dataMap["headUrl"],
+            _, err1 := Db.Exec(sql, dataMap["openId"].(string), dataMap["nickName"].(string), dataMap["headUrl"],
                 dataMap["gender"], dataMap["age"].(string), 0, 0)
 
+            log.Println(sql)
+            log.Println("error info:", err1)
+
             //查找userId
-            rows2, err := Db.Query("SELECT userId, nickName FROM userInfo where wechatId = ?", m.OpenId)
+            rows2, err2 := Db.Query("SELECT userId, nickName FROM userInfo where wechatId = ?", m.OpenId)
             if err != nil {
-                log.Println(err)
+                log.Println(err2)
             }
             defer rows2.Close()
             for rows2.Next() {

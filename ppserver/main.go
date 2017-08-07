@@ -8,6 +8,7 @@ import (
     "log"
     "net/http"
     "os"
+    "time"
 )
 
 var dataChain = make(chan map[string]interface{}, 5)
@@ -17,13 +18,17 @@ var (
     db_user   = "paopao"
     db_passwd = "paoMhxzKhl123"
     //address   = db_user + ":" + db_passwd + "@tcp(" + db_ip + ")/ppserver?charset=utf8"
-    address = "reportadmin:123456@tcp(202.120.1.109:3306)/ppserver?charset=utf8"
+    //address = "reportadmin:123456@tcp(202.120.1.109:3306)/ppserver?charset=utf8"
+    address = "root:Paopao123`@tcp(127.0.0.1:3306)/ppserver?charset=utf8"
     Db      *sql.DB
 )
 
 func init() {
     var err error
     Db, err = sql.Open("mysql", address)
+    Db.SetMaxIdleConns(10)
+    Db.SetMaxOpenConns(10)
+
     if err != nil {
         log.Println("failed to open database:", err.Error())
         return
@@ -33,7 +38,8 @@ func init() {
 
 func main() {
 
-    logFile, err := os.OpenFile("./ppserver.log", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0666)
+    logFile, err := os.OpenFile("./log/"+time.Now().Format("20060102")+".ppserver.log",
+        os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0666)
     if err != nil {
         fmt.Println("open file error=", err.Error())
         os.Exit(-1)
@@ -64,4 +70,6 @@ func main() {
     if err := http.ListenAndServe(":9091", nil); err != nil {
         panic(err)
     }
+
+    Db.Close()
 }

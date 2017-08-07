@@ -130,7 +130,7 @@ func incomeList(w http.ResponseWriter, req *http.Request) {
         if err3 != nil {
             log.Println("getEvent query error info:", err3)
         }
-        defer rows2.Close()
+        defer rows3.Close()
 
         var commitTime string
         var amount float32

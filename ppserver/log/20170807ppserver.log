@@ -1,0 +1,140 @@
+2017/08/07 17:49:03 main.go:58: ===start the ppserver===.
+2017/08/07 17:49:03 common.go:42: Listen HandlerMap's length: 16
+2017/08/07 17:49:03 common.go:49: router: /userSignIn   handle: 0x12696d0
+2017/08/07 17:49:03 common.go:49: router: /updateUserData   handle: 0x1254120
+2017/08/07 17:49:03 common.go:49: router: /withdrawal   handle: 0x126b5f0
+2017/08/07 17:49:03 common.go:49: router: /HandleWithdrawal   handle: 0x126dba0
+2017/08/07 17:49:03 common.go:49: router: /transRecord   handle: 0x1262950
+2017/08/07 17:49:03 common.go:49: router: /readAward   handle: 0x12561f0
+2017/08/07 17:49:03 common.go:49: router: /incomeList   handle: 0x12604c0
+2017/08/07 17:49:03 common.go:49: router: /withdrawalRcord   handle: 0x126c9b0
+2017/08/07 17:49:03 common.go:49: router: /listWithdraw   handle: 0x126cd40
+2017/08/07 17:49:03 common.go:49: router: /feedback   handle: 0x1259da0
+2017/08/07 17:49:03 common.go:49: router: /effectiveFeedback   handle: 0x125bee0
+2017/08/07 17:49:03 common.go:49: router: /loginAndOut   handle: 0x1269560
+2017/08/07 17:49:03 common.go:49: router: /shareApp   handle: 0x1255590
+2017/08/07 17:49:03 common.go:49: router: /getTaskStatus   handle: 0x125d730
+2017/08/07 17:49:03 common.go:49: router: /listFeedback   handle: 0x125a9f0
+2017/08/07 17:49:03 common.go:49: router: /icon   handle: 0x1263a00
+2017/08/07 17:49:16 withdrawalData.go:88: withdrawalData: {82 chenxun chenxun 30}
+2017/08/07 17:49:16 common.go:56: checkUserId 82
+2017/08/07 17:49:16 server.go:2753: http: panic serving 127.0.0.1:52549: runtime error: invalid memory address or nil pointer dereference
+goroutine 7 [running]:
+net/http.(*conn).serve.func1(0xc420090820)
+	/usr/local/go/src/net/http/server.go:1721 +0xd0
+panic(0x12b7360, 0x1462ff0)
+	/usr/local/go/src/runtime/panic.go:489 +0x2cf
+database/sql.(*Rows).close(0x0, 0x0, 0x0, 0x0, 0x0)
+	/usr/local/go/src/database/sql/sql.go:2422 +0x7a
+database/sql.(*Rows).Close(0x0, 0xc42004d7a8, 0x1)
+	/usr/local/go/src/database/sql/sql.go:2418 +0x3d
+panic(0x12b7360, 0x1462ff0)
+	/usr/local/go/src/runtime/panic.go:489 +0x2cf
+database/sql.(*Rows).Next(0x0, 0x131d188)
+	/usr/local/go/src/database/sql/sql.go:2133 +0x30
+main.checkUserId(0xc420011720, 0x2, 0xc4200906e0, 0xc42001b500)
+	/Users/chenxun/go/src/ppserver/common.go:60 +0x21b
+main.withdrawal(0x14412e0, 0xc4200f4000, 0xc42000a900)
+	/Users/chenxun/go/src/ppserver/withdrawalData.go:95 +0x2a9
+net/http.HandlerFunc.ServeHTTP(0x131d498, 0x14412e0, 0xc4200f4000, 0xc42000a900)
+	/usr/local/go/src/net/http/server.go:1942 +0x44
+net/http.(*ServeMux).ServeHTTP(0x146c1c0, 0x14412e0, 0xc4200f4000, 0xc42000a900)
+	/usr/local/go/src/net/http/server.go:2238 +0x130
+net/http.serverHandler.ServeHTTP(0xc4200ac2c0, 0x14412e0, 0xc4200f4000, 0xc42000a900)
+	/usr/local/go/src/net/http/server.go:2568 +0x92
+net/http.(*conn).serve(0xc420090820, 0x14417a0, 0xc420014580)
+	/usr/local/go/src/net/http/server.go:1825 +0x612
+created by net/http.(*Server).Serve
+	/usr/local/go/src/net/http/server.go:2668 +0x2ce
+2017/08/07 17:50:08 withdrawalData.go:88: withdrawalData: {82 chenxun chenxun 30}
+2017/08/07 17:50:08 common.go:56: checkUserId 82
+2017/08/07 17:50:08 server.go:2753: http: panic serving 127.0.0.1:52553: runtime error: invalid memory address or nil pointer dereference
+goroutine 9 [running]:
+net/http.(*conn).serve.func1(0xc420090960)
+	/usr/local/go/src/net/http/server.go:1721 +0xd0
+panic(0x12b7360, 0x1462ff0)
+	/usr/local/go/src/runtime/panic.go:489 +0x2cf
+database/sql.(*Rows).close(0x0, 0x0, 0x0, 0x0, 0x0)
+	/usr/local/go/src/database/sql/sql.go:2422 +0x7a
+database/sql.(*Rows).Close(0x0, 0xc42004d7a8, 0x1)
+	/usr/local/go/src/database/sql/sql.go:2418 +0x3d
+panic(0x12b7360, 0x1462ff0)
+	/usr/local/go/src/runtime/panic.go:489 +0x2cf
+database/sql.(*Rows).Next(0x0, 0x131d188)
+	/usr/local/go/src/database/sql/sql.go:2133 +0x30
+main.checkUserId(0xc4200118b0, 0x2, 0xc4200906e0, 0xc42001b700)
+	/Users/chenxun/go/src/ppserver/common.go:60 +0x21b
+main.withdrawal(0x14412e0, 0xc4200f40e0, 0xc42000aa00)
+	/Users/chenxun/go/src/ppserver/withdrawalData.go:95 +0x2a9
+net/http.HandlerFunc.ServeHTTP(0x131d498, 0x14412e0, 0xc4200f40e0, 0xc42000aa00)
+	/usr/local/go/src/net/http/server.go:1942 +0x44
+net/http.(*ServeMux).ServeHTTP(0x146c1c0, 0x14412e0, 0xc4200f40e0, 0xc42000aa00)
+	/usr/local/go/src/net/http/server.go:2238 +0x130
+net/http.serverHandler.ServeHTTP(0xc4200ac2c0, 0x14412e0, 0xc4200f40e0, 0xc42000aa00)
+	/usr/local/go/src/net/http/server.go:2568 +0x92
+net/http.(*conn).serve(0xc420090960, 0x14417a0, 0xc4200148c0)
+	/usr/local/go/src/net/http/server.go:1825 +0x612
+created by net/http.(*Server).Serve
+	/usr/local/go/src/net/http/server.go:2668 +0x2ce
+2017/08/07 17:50:39 main.go:58: ===start the ppserver===.
+2017/08/07 17:50:39 common.go:42: Listen HandlerMap's length: 16
+2017/08/07 17:50:39 common.go:49: router: /userSignIn   handle: 0x12696d0
+2017/08/07 17:50:39 common.go:49: router: /updateUserData   handle: 0x1254120
+2017/08/07 17:50:39 common.go:49: router: /shareApp   handle: 0x1255590
+2017/08/07 17:50:39 common.go:49: router: /incomeList   handle: 0x12604c0
+2017/08/07 17:50:39 common.go:49: router: /listFeedback   handle: 0x125a9f0
+2017/08/07 17:50:39 common.go:49: router: /listWithdraw   handle: 0x126cd40
+2017/08/07 17:50:39 common.go:49: router: /readAward   handle: 0x12561f0
+2017/08/07 17:50:39 common.go:49: router: /feedback   handle: 0x1259da0
+2017/08/07 17:50:39 common.go:49: router: /effectiveFeedback   handle: 0x125bee0
+2017/08/07 17:50:39 common.go:49: router: /transRecord   handle: 0x1262950
+2017/08/07 17:50:39 common.go:49: router: /icon   handle: 0x1263a00
+2017/08/07 17:50:39 common.go:49: router: /withdrawal   handle: 0x126b5f0
+2017/08/07 17:50:39 common.go:49: router: /withdrawalRcord   handle: 0x126c9b0
+2017/08/07 17:50:39 common.go:49: router: /HandleWithdrawal   handle: 0x126dba0
+2017/08/07 17:50:39 common.go:49: router: /loginAndOut   handle: 0x1269560
+2017/08/07 17:50:39 common.go:49: router: /getTaskStatus   handle: 0x125d730
+2017/08/07 17:50:44 withdrawalData.go:88: withdrawalData: {82 chenxun chenxun 30}
+2017/08/07 17:50:44 common.go:56: checkUserId 82
+2017/08/07 17:50:44 common.go:61: checkUserId 82
+2017/08/07 17:50:44 withdrawalData.go:73: getEvent-->dataMap: map[commitTime:1501505201 userId:82 status:1 amount:45]
+2017/08/07 17:50:44 withdrawalData.go:73: getEvent-->dataMap: map[amount:45 commitTime:1501506825 userId:82 status:1]
+2017/08/07 17:50:44 withdrawalData.go:73: getEvent-->dataMap: map[userId:82 status:1 amount:30 commitTime:1501745421]
+2017/08/07 17:50:44 withdrawalData.go:73: getEvent-->dataMap: map[userId:82 status:1 amount:30 commitTime:1501760790]
+2017/08/07 17:50:44 withdrawalData.go:73: getEvent-->dataMap: map[userId:82 status:1 amount:30 commitTime:1501760940]
+2017/08/07 17:50:44 withdrawalData.go:73: getEvent-->dataMap: map[userId:82 status:1 amount:30 commitTime:1501761647]
+2017/08/07 17:50:44 login.go:80: call getUserInfo userID: 82
+2017/08/07 17:50:44 login.go:117: getUserInfo:retMap map[nickName:DOYER headUrl:http://wx.qlogo.cn/mmopen/FhfxXoLj0SZKPEqeOdmVSeoQicbG8r0Xf2GOqBhL75g4SH5ufD7z17HxbeJEbVSRdQyPwWTOrm5gaBtnr9EtZgToFnIKsDoibO/0 gender:1 age:0000-00-00 gold:15 cash:40.22 userId:82 openId:obDFh1DXK1L-KPtMYuxGGnlOF7Lw]
+2017/08/07 17:50:44 withdrawalData.go:106: userMap: map[age:0000-00-00 gold:15 cash:40.22 userId:82 openId:obDFh1DXK1L-KPtMYuxGGnlOF7Lw nickName:DOYER headUrl:http://wx.qlogo.cn/mmopen/FhfxXoLj0SZKPEqeOdmVSeoQicbG8r0Xf2GOqBhL75g4SH5ufD7z17HxbeJEbVSRdQyPwWTOrm5gaBtnr9EtZgToFnIKsDoibO/0 gender:1]
+2017/08/07 17:50:44 withdrawalData.go:107: 用户提交提现申请事件
+2017/08/07 17:50:44 withdrawalData.go:109: 用户拥有的总额cash： 40
+2017/08/07 17:50:44 withdrawalData.go:116: 在db中插入提现记录
+2017/08/07 17:53:21 main.go:58: ===start the ppserver===.
+2017/08/07 17:53:21 common.go:42: Listen HandlerMap's length: 16
+2017/08/07 17:53:21 common.go:49: router: /readAward   handle: 0x12561f0
+2017/08/07 17:53:21 common.go:49: router: /effectiveFeedback   handle: 0x125bee0
+2017/08/07 17:53:21 common.go:49: router: /listWithdraw   handle: 0x126cd40
+2017/08/07 17:53:21 common.go:49: router: /shareApp   handle: 0x1255590
+2017/08/07 17:53:21 common.go:49: router: /updateUserData   handle: 0x1254120
+2017/08/07 17:53:21 common.go:49: router: /incomeList   handle: 0x12604c0
+2017/08/07 17:53:21 common.go:49: router: /HandleWithdrawal   handle: 0x126dba0
+2017/08/07 17:53:21 common.go:49: router: /transRecord   handle: 0x1262950
+2017/08/07 17:53:21 common.go:49: router: /userSignIn   handle: 0x12696d0
+2017/08/07 17:53:21 common.go:49: router: /withdrawalRcord   handle: 0x126c9b0
+2017/08/07 17:53:21 common.go:49: router: /icon   handle: 0x1263a00
+2017/08/07 17:53:21 common.go:49: router: /withdrawal   handle: 0x126b5f0
+2017/08/07 17:53:21 common.go:49: router: /getTaskStatus   handle: 0x125d730
+2017/08/07 17:53:21 common.go:49: router: /feedback   handle: 0x1259da0
+2017/08/07 17:53:21 common.go:49: router: /listFeedback   handle: 0x125a9f0
+2017/08/07 17:53:21 common.go:49: router: /loginAndOut   handle: 0x1269560
+2017/08/07 17:53:25 withdrawalData.go:88: withdrawalData: {82 chenxun chenxun 30}
+2017/08/07 17:53:25 common.go:56: checkUserId 82
+2017/08/07 17:53:26 common.go:61: checkUserId 82
+2017/08/07 17:53:26 withdrawalData.go:73: getEvent-->dataMap: map[userId:82 status:1 amount:45 commitTime:1501505201]
+2017/08/07 17:53:26 withdrawalData.go:73: getEvent-->dataMap: map[userId:82 status:1 amount:45 commitTime:1501506825]
+2017/08/07 17:53:26 withdrawalData.go:73: getEvent-->dataMap: map[userId:82 status:1 amount:30 commitTime:1501745421]
+2017/08/07 17:53:26 withdrawalData.go:73: getEvent-->dataMap: map[commitTime:1501760790 userId:82 status:1 amount:30]
+2017/08/07 17:53:26 withdrawalData.go:73: getEvent-->dataMap: map[userId:82 status:1 amount:30 commitTime:1501760940]
+2017/08/07 17:53:26 withdrawalData.go:73: getEvent-->dataMap: map[userId:82 status:1 amount:30 commitTime:1501761647]
+2017/08/07 17:53:26 withdrawalData.go:73: getEvent-->dataMap: map[userId:82 status:0 amount:30 commitTime:1502099444]
+2017/08/07 17:53:26 withdrawalData.go:103: 还有未审核通过的提现申请

@@ -20,11 +20,11 @@ type userData struct {
     Age      string
 }
 type shareJson struct {
-    Code int    `json:"code,omitempty"`
-    Gold int    `json:"gold,omitempty"`
-    Msg  string `json:"message,omitempty"`
+    Code    int    `json:"code,omitempty"`
+    Gold    int    `json:"gold,omitempty"`
+    Message string `json:"message,omitempty"`
 }
-type retJson struct {
+type readJson struct {
     Code    int    `json:"code,omitempty"`
     Gold    int    `json:"gold,omitempty"`
     Message string `json:"message,omitempty"`
@@ -131,7 +131,7 @@ func shareApp(w http.ResponseWriter, req *http.Request) {
             var retValue shareJson
             retValue.Code = 200
             retValue.Gold = eventMap["addGoldCoin"].(int)
-            retValue.Msg = "success"
+            retValue.Message = "success"
             bytes, _ := json.Marshal(retValue)
             fmt.Fprint(w, string(bytes), "\n")
 
@@ -190,7 +190,7 @@ func readAward(w http.ResponseWriter, req *http.Request) {
             fmt.Fprint(w, retValue, "\n")
             log.Println("今天用户已经完成taskId=", taskId, "的阅读任务")
         } else {
-            var retValue retJson
+            var retValue readJson
             retValue.Code = 200
             retValue.Gold = eventMap["addGoldCoin"].(int)
             retValue.Message = "success"
