@@ -14,10 +14,10 @@ import (
 var (
     db_ip     = "rds8q6sd63m3voxhtk09.mysql.rds.aliyuncs.com:3306"
     db_user   = "paopao"
-    db_passwd = "paoMhxzKhl123"
+    db_passwd = "222222"
     //address   = db_user + ":" + db_passwd + "@tcp(" + db_ip + ")/ppserver?charset=utf8"
-    address = "reportadmin:123456@tcp(202.120.1.109:3306)/ppserver?charset=utf8"
-    //address = "root:Paopao123`@tcp(127.0.0.1:3306)/ppserver?charset=utf8"
+    address = "admin:222@tcp(202.120.1.109:3306)/ppserver?charset=utf8"
+    //address = "qqq:Pp`@tcp(127.0.0.1:3306)/ppserver?charset=utf8"
     Db *sql.DB
 )
 
