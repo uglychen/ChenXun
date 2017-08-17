@@ -1,0 +1,36 @@
+2017/08/08 11:20:03 main.go:56: ===start the ppserver===.
+2017/08/08 11:20:03 common.go:43: Listen HandlerMap's length: 16
+2017/08/08 11:20:03 common.go:50: router: /readAward   handle: 0x12561f0
+2017/08/08 11:20:03 common.go:50: router: /withdrawal   handle: 0x126b5f0
+2017/08/08 11:20:03 common.go:50: router: /updateUserData   handle: 0x1254120
+2017/08/08 11:20:03 common.go:50: router: /getTaskStatus   handle: 0x125d730
+2017/08/08 11:20:03 common.go:50: router: /incomeList   handle: 0x12604c0
+2017/08/08 11:20:03 common.go:50: router: /transRecord   handle: 0x1262950
+2017/08/08 11:20:03 common.go:50: router: /userSignIn   handle: 0x12696d0
+2017/08/08 11:20:03 common.go:50: router: /withdrawalRcord   handle: 0x126c9b0
+2017/08/08 11:20:03 common.go:50: router: /listFeedback   handle: 0x125a9f0
+2017/08/08 11:20:03 common.go:50: router: /HandleWithdrawal   handle: 0x126dba0
+2017/08/08 11:20:03 common.go:50: router: /listWithdraw   handle: 0x126cd40
+2017/08/08 11:20:03 common.go:50: router: /loginAndOut   handle: 0x1269560
+2017/08/08 11:20:03 common.go:50: router: /shareApp   handle: 0x1255590
+2017/08/08 11:20:03 common.go:50: router: /feedback   handle: 0x1259da0
+2017/08/08 11:20:03 common.go:50: router: /effectiveFeedback   handle: 0x125bee0
+2017/08/08 11:20:03 common.go:50: router: /icon   handle: 0x1263a00
+2017/08/08 11:22:05 main.go:56: ===start the ppserver===.
+2017/08/08 11:22:05 common.go:43: Listen HandlerMap's length: 16
+2017/08/08 11:22:05 common.go:50: router: /updateUserData   handle: 0x1254120
+2017/08/08 11:22:05 common.go:50: router: /incomeList   handle: 0x12604c0
+2017/08/08 11:22:05 common.go:50: router: /withdrawalRcord   handle: 0x126c9b0
+2017/08/08 11:22:05 common.go:50: router: /shareApp   handle: 0x1255590
+2017/08/08 11:22:05 common.go:50: router: /readAward   handle: 0x12561f0
+2017/08/08 11:22:05 common.go:50: router: /getTaskStatus   handle: 0x125d730
+2017/08/08 11:22:05 common.go:50: router: /effectiveFeedback   handle: 0x125bee0
+2017/08/08 11:22:05 common.go:50: router: /icon   handle: 0x1263a00
+2017/08/08 11:22:05 common.go:50: router: /loginAndOut   handle: 0x1269560
+2017/08/08 11:22:05 common.go:50: router: /userSignIn   handle: 0x12696d0
+2017/08/08 11:22:05 common.go:50: router: /transRecord   handle: 0x1262950
+2017/08/08 11:22:05 common.go:50: router: /listWithdraw   handle: 0x126cd40
+2017/08/08 11:22:05 common.go:50: router: /withdrawal   handle: 0x126b5f0
+2017/08/08 11:22:05 common.go:50: router: /feedback   handle: 0x1259da0
+2017/08/08 11:22:05 common.go:50: router: /listFeedback   handle: 0x125a9f0
+2017/08/08 11:22:05 common.go:50: router: /HandleWithdrawal   handle: 0x126dba0

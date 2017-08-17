@@ -1,14 +1,13 @@
 package main
 
 import (
-    //"database/sql"
-    "encoding/base64"
     "encoding/json"
     "fmt"
     _ "github.com/go-sql-driver/mysql"
     "io/ioutil"
     "log"
     "net/http"
+    "net/url"
     "strconv"
     "time"
 )
@@ -119,8 +118,8 @@ func listFeedback(w http.ResponseWriter, req *http.Request) {
         dataMap["userId"] = userId
         dataMap["android_id"] = android_id
         dataMap["pkg_name"] = pkg_name
-        dataMap["contact_way"] = base64.StdEncoding.EncodeToString([]byte(contact_way))
-        dataMap["content"] = base64.StdEncoding.EncodeToString([]byte(content))
+        dataMap["contact_way"], _ = url.QueryUnescape(contact_way)
+        dataMap["content"], _ = url.QueryUnescape(content)
         dataMap["channel"] = channel
         dataMap["commitTime"] = commitTime
         dataMap["app_version"] = app_version

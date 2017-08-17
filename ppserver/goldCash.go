@@ -25,13 +25,6 @@ func saveGoldAndCash() {
 
     str_sql := `insert goldAndCash (userId, taskId, addGoldCoin, addCash, eventId)
      values (?, ?, ?, ?, ?)`
-
-    /*db, err := sql.Open("mysql", address)
-      if err != nil {
-          log.Println(err)
-      }
-      defer db.Close()*/
-
     for {
         data := <-goldDataChan
         log.Println("recv data from goldDataChan", data)

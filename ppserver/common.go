@@ -2,11 +2,12 @@ package main
 
 import (
     "database/sql"
-    //"fmt"
     _ "github.com/go-sql-driver/mysql"
     "log"
     "net/http"
 )
+
+var HandlerMap = make(map[string]HandlersFunc)
 
 type BaseJsonData struct {
     Code    int         `json:"code"`

@@ -21,12 +21,6 @@ type eventData struct {
 func update_eventTable() {
 
     sql_str := `update eventTable set taskStatus=? where userId = ? and taskId=? and date=?`
-    /*db, err := sql.Open("mysql", address)
-      if err != nil {
-          log.Println("open db error info:", err)
-      }
-      defer db.Close()*/
-
     for {
         data := <-eventChan
         log.Println("update_eventTable: recv data from eventChan", data)
@@ -47,12 +41,6 @@ func getTaskInfoTable(taskType string) [](map[string]interface{}) {
     var addCash float32
 
     slice := make([](map[string]interface{}), 0)
-    /*db, err := sql.Open("mysql", address)
-      if err != nil {
-          log.Println("Open database error:", err)
-      }
-      defer db.Close()*/
-
     if taskType == "one" {
         str_sql := `select taskId, taskStatus, addGoldCoin, addCash 
         from taskInfoTable where taskType = ?`
@@ -123,7 +111,6 @@ func createEvent(userId int, slice [](map[string]interface{}), db *sql.DB) {
 
             flag := rows.Next()
             if flag {
-
                 for rows.Next() {
                 }
                 log.Println("taskId:", dataMap["taskId"], "have in eventTable")

@@ -11,16 +11,14 @@ import (
     "time"
 )
 
-var dataChain = make(chan map[string]interface{}, 5)
-var HandlerMap = make(map[string]HandlersFunc)
 var (
     db_ip     = "rds8q6sd63m3voxhtk09.mysql.rds.aliyuncs.com:3306"
     db_user   = "paopao"
     db_passwd = "paoMhxzKhl123"
     //address   = db_user + ":" + db_passwd + "@tcp(" + db_ip + ")/ppserver?charset=utf8"
-    //address = "reportadmin:123456@tcp(202.120.1.109:3306)/ppserver?charset=utf8"
-    address = "root:Paopao123`@tcp(127.0.0.1:3306)/ppserver?charset=utf8"
-    Db      *sql.DB
+    address = "reportadmin:123456@tcp(202.120.1.109:3306)/ppserver?charset=utf8"
+    //address = "root:Paopao123`@tcp(127.0.0.1:3306)/ppserver?charset=utf8"
+    Db *sql.DB
 )
 
 func init() {
@@ -38,8 +36,9 @@ func init() {
 
 func main() {
 
-    logFile, err := os.OpenFile("./log/"+time.Now().Format("20060102")+".ppserver.log",
+    logFile, err := os.OpenFile("./ppserverlog/"+time.Now().Format("20060102")+".ppserver.log",
         os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0666)
+
     if err != nil {
         fmt.Println("open file error=", err.Error())
         os.Exit(-1)
