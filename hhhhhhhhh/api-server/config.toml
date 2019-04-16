@@ -1,0 +1,28 @@
+# This is a TOML document. wilson.
+
+
+title = "TOML config,writtened by wilson"
+#redisServer = "47.52.57.188"
+redisServer = "0.0.0.0"
+redisPorts = "6379"
+
+redisMaxIdle    = 10000
+redisMaxActive	= 10000
+
+
+#masterRedisServer="47.52.57.188"
+masterRedisServer="47.52.57.188"
+
+
+mysqlServer = "0.0.0.0"
+mysqlPorts = "3306"
+mysqlDbUser     = "root"
+mysqlDbPassword = ""
+mysqlDbName="proxypro"
+
+thisServer="0.0.0.0"
+thisPort="5689"
+
+
+
+

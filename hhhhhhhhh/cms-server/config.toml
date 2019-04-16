@@ -1,0 +1,14 @@
+# This is a TOML document. wilson.
+title = "TOML config,writtened by wilson"
+
+
+RedisMaster="0.0.0.0"  # redis master
+RedisSlave1="0.0.0.0"  # redis slave1
+RedisSlave2="0.0.0.0"  # redis slave2
+RedisPorts = "6379"
+
+mysqlServer = "0.0.0.0"
+mysqlPorts = "3306"
+mysqlDbUser = "root"
+mysqlDbPassword = "123456"
+
